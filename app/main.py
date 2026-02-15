@@ -49,4 +49,4 @@ iface = gr.Interface(
     description="AI-powered assistant that transforms complex hospital discharge instructions into personalized recovery guidance."
 )
 
-iface.launch()
+iface.launch(share=True)

@@ -1,0 +1,41 @@
+DISCHARGE SUMMARY
+
+Patient Name: Rajesh Sharma  
+Age: 58  
+Sex: Male  
+Admission Date: 12 Feb 2026  
+Discharge Date: 16 Feb 2026  
+
+Primary Diagnosis:
+Acute Inferior Wall Myocardial Infarction (Heart Attack)
+
+Procedures Performed:
+Emergency coronary angiography followed by successful stent placement in the right coronary artery.
+
+Hospital Course:
+The patient presented with severe chest pain and sweating. ECG confirmed myocardial infarction. A drug-eluting stent was placed without complications. The patient remained hemodynamically stable post-procedure.
+
+Discharge Medications:
+- Aspirin 75 mg once daily
+- Clopidogrel 75 mg once daily
+- Atorvastatin 40 mg at bedtime
+- Metoprolol 25 mg twice daily
+- Pantoprazole 40 mg once daily before breakfast
+
+Activity Instructions:
+- Avoid heavy lifting for at least 2 weeks.
+- Begin light walking daily as tolerated.
+- No driving for 1 week.
+
+Diet:
+Low salt, low fat cardiac diet. Avoid fried foods and red meat.
+
+Follow-Up:
+Cardiology review after 7 days.
+
+Warning Signs:
+Seek immediate medical attention if you experience:
+- Chest pain
+- Shortness of breath
+- Excessive sweating
+- Palpitations

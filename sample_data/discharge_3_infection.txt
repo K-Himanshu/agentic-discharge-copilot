@@ -1,0 +1,32 @@
+DISCHARGE SUMMARY
+
+Patient Name: Mohammed Arif  
+Age: 67  
+Sex: Male  
+
+Primary Diagnosis:
+Community Acquired Pneumonia
+
+Hospital Course:
+Patient admitted with high-grade fever, productive cough, and breathlessness. Chest X-ray confirmed left lower lobe pneumonia. Improved with IV antibiotics and oxygen therapy.
+
+Discharge Medications:
+- Levofloxacin 750 mg once daily for 7 days
+- Paracetamol 650 mg every 6 hours as needed for fever
+- Salbutamol inhaler: 2 puffs every 6 hours as needed
+
+Instructions:
+- Complete full antibiotic course.
+- Maintain adequate hydration.
+- Perform steam inhalation twice daily.
+
+Activity:
+Gradual return to normal activity. Avoid cold exposure.
+
+Follow-Up:
+Pulmonology visit in 1 week.
+
+Seek urgent care if:
+- Breathing difficulty worsens
+- Oxygen saturation drops below 94%
+- Persistent fever for more than 3 days

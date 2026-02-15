@@ -1,0 +1,39 @@
+DISCHARGE SUMMARY
+
+Patient Name: Anita Verma  
+Age: 42  
+Sex: Female  
+
+Primary Diagnosis:
+Acute Appendicitis
+
+Procedure:
+Laparoscopic Appendectomy performed under general anesthesia.
+
+Hospital Course:
+Surgery was uneventful. Patient tolerated procedure well. Pain controlled with analgesics. Ambulating independently at discharge.
+
+Discharge Medications:
+- Amoxicillin-Clavulanate 625 mg every 8 hours for 5 days
+- Ibuprofen 400 mg every 6 hours as needed for pain
+- Ondansetron 4 mg as needed for nausea
+
+Wound Care:
+Keep incision clean and dry. Remove dressing after 48 hours. Do not scrub incision site.
+
+Activity:
+- Avoid strenuous activity for 2 weeks.
+- Walking encouraged.
+- Do not lift objects heavier than 5 kg.
+
+Diet:
+Start with soft diet. Advance as tolerated.
+
+Follow-Up:
+Surgical review in 5 days.
+
+Return to ER if:
+- Fever > 101°F
+- Increasing abdominal pain
+- Pus or redness at incision site
+- Persistent vomiting
