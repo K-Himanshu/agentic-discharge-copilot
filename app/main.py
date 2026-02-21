@@ -1,17 +1,16 @@
-import gradio as gr
-from agent import build_recovery_plan
+from fastapi import FastAPI
+from .agents import run_discharge_agent
+from .logging_utils import log_case
+import json
 
+app = FastAPI()
 
-def generate_plan(discharge_text):
-    return build_recovery_plan(discharge_text)
+@app.post("/generate")
+def generate(note: str):
+    raw_response = run_discharge_agent(note)
 
+    parsed = json.loads(raw_response)
 
-iface = gr.Interface(
-    fn=generate_plan,
-    inputs=gr.Textbox(lines=20, placeholder="Paste discharge summary here..."),
-    outputs=gr.Markdown(),
-    title="Agentic Post-Discharge Copilot",
-    description="AI-powered assistant that extracts medications, warning signs, and recovery guidance from hospital discharge notes."
-)
+    log_case(note, parsed)
 
-iface.launch(share=True)
+    return parsed
