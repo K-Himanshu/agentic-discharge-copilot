@@ -32,7 +32,31 @@ There is a critical gap between hospital discharge and safe recovery at home.
 * Applies rule-based safety validation
 * Logs outputs for audit traceability
 
-This system is designed to support clinicians, reduce readmission risk, and improve post-discharge clarity.
+The system is designed to support clinicians, reduce readmission risk, and improve post-discharge clarity.
+
+---
+
+# 🏗 System Architecture
+
+This project uses a **hybrid cloud + local architecture** to ensure stable GPU inference while keeping the repository lightweight and reproducible.
+
+## ☁️ Cloud (Google Colab GPU)
+
+* MedGemma (`google/medgemma-1.5-4b-it`)
+* FastAPI inference service
+* Deterministic JSON-constrained generation
+* Exposed securely via ngrok
+
+## 💻 Local Repository
+
+* Gradio clinical UI
+* API client layer
+* Rule-based safety validator
+* Audit logging
+* Configuration management
+
+The model **does not run locally**.
+All inference is performed remotely on GPU for stability and reproducibility.
 
 ---
 
@@ -43,16 +67,16 @@ Rather than a single model call, we implement a modular clinical workflow:
 ```
 Discharge Note
       ↓
-Risk Triage Agent
+Remote MedGemma Inference (GPU)
       ↓
-Structured Care Plan Generator
+Structured Care Plan (JSON)
       ↓
-Safety Validator (Rule-based)
+Local Safety Validator (Rule-based)
       ↓
-Audit Logging + API Response
+Audit Logging + UI Display
 ```
 
-This layered architecture improves reliability and aligns with real-world healthcare workflows.
+This separation of concerns improves reliability and mirrors real-world healthcare system design.
 
 ---
 
@@ -62,13 +86,14 @@ This layered architecture improves reliability and aligns with real-world health
 agentic-discharge-copilot/
 │
 ├── app/
-│   ├── main.py              # FastAPI entrypoint
-│   ├── models.py            # Pydantic schemas
-│   ├── medgemma.py          # MedGemma loading + inference
-│   ├── agents.py            # Triage + plan orchestration
+│   ├── ui.py                # Gradio clinical interface
+│   ├── api_client.py        # Calls remote Colab inference service
 │   ├── safety.py            # Rule-based safety validator
+│   ├── models.py            # Pydantic schemas
+│   ├── config.py            # Environment configuration
 │   └── logging_utils.py     # Audit logging
 │
+├── medgemma_inference_server.ipynb
 ├── requirements.txt
 ├── README.md
 └── .env
@@ -78,11 +103,9 @@ agentic-discharge-copilot/
 
 ## 🔬 Use of MedGemma (HAI-DEF Model)
 
-This project uses:
+**Model Used:** `google/medgemma-1.5-4b-it`
 
-**Model:** `google/medgemma-1.5-4b-it`
-
-We leverage MedGemma’s instruction-tuned medical reasoning capabilities to:
+We leverage MedGemma’s instruction-tuned medical reasoning to:
 
 * Generate structured clinical outputs
 * Extract medication regimens
@@ -90,12 +113,12 @@ We leverage MedGemma’s instruction-tuned medical reasoning capabilities to:
 * Assign triage risk levels
 * Produce patient-friendly language
 
-Inference is:
+Inference characteristics:
 
 * Deterministic (no sampling)
-* Structured JSON-constrained
-* GPU-accelerated
-* Precision optimized (bfloat16/float16)
+* Strict JSON schema enforcement
+* GPU-accelerated (Colab)
+* Precision optimized (bfloat16)
 
 ---
 
@@ -136,9 +159,10 @@ This structured design enables:
 We implement hybrid AI + rule-based safeguards:
 
 * Detection of high-risk symptoms (e.g., chest pain, shortness of breath)
-* Escalation signals
+* Escalation flags
+* Structured red-flag actions
 * Audit logging for traceability
-* Deterministic inference (no randomness in medical outputs)
+* Deterministic inference (no randomness)
 
 Healthcare AI must prioritize safety over creativity.
 
@@ -154,12 +178,24 @@ The Gradio interface provides:
 * Warning signs section
 * Follow-up plan
 * Simplified patient instructions
+* Safety alerts
 
 Designed for clarity, readability, and workflow integration.
 
 ---
+## 🧪 Running MedGemma Inference (Colab)
 
-## 🚀 How to Run
+The model runs remotely on GPU via Google Colab.
+
+1. Open `medgemma_inference_server.ipynb`
+2. Run all cells
+3. Copy the generated ngrok URL
+4. Update `.env` with the endpoint
+5. Launch the local UI
+
+Inference is not performed locally.
+
+# 🚀 How to Run (Local UI)
 
 ### 1️⃣ Install dependencies
 
@@ -167,10 +203,12 @@ Designed for clarity, readability, and workflow integration.
 pip install -r requirements.txt
 ```
 
-### 2️⃣ Start backend
+### 2️⃣ Configure remote endpoint
 
-```bash
-uvicorn app.main:app --reload
+Create `.env`:
+
+```
+API_URL=https://your-ngrok-url.ngrok-free.app/generate
 ```
 
 ### 3️⃣ Launch UI
@@ -178,6 +216,8 @@ uvicorn app.main:app --reload
 ```bash
 python app/ui.py
 ```
+
+⚠️ Ensure the Colab inference server is running before launching the UI.
 
 ---
 
@@ -193,7 +233,7 @@ If deployed in real-world settings, this system could:
 
 Structured AI discharge tools have the potential to significantly improve care transitions.
 
-
+---
 
 ## 🔒 Audit & Traceability
 
@@ -227,7 +267,4 @@ Built for the MedGemma Impact Challenge.
 
 Agentic Post-Discharge Copilot is not just a summarizer —
 it is a structured, safety-focused clinical workflow assistant designed to bridge the critical gap between hospital discharge and safe recovery at home.
-
-
-
 
